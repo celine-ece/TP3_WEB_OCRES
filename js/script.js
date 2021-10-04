@@ -18,10 +18,10 @@ function start() {
       const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
 
       // Modifier le DOM
-      document.getElementById('today-forecast-main').innerHTML = main;
-      document.getElementById('today-forecast-more-info').innerHTML = description;
-      document.getElementById('icon-weather-container').innerHTML = icon;
-      document.getElementById('today-forecast-temp').innerHTML = `${temp}°C`;
+      document.getElementById('today-forecast-main0').innerHTML = main;
+      document.getElementById('today-forecast-more-info0').innerHTML = description;
+      document.getElementById('icon-weather-container0').innerHTML = icon;
+      document.getElementById('today-forecast-temp0').innerHTML = `${temp}°C`;
       
     })
     .catch(function(error) {
@@ -50,10 +50,10 @@ apiWeathern.fetchTodayForecast()
   console.log(main);
   console.log(description);
   // Modifier le DOM
-  document.getElementById('today-forecast-main').innerHTML = main;
-  document.getElementById('today-forecast-more-info').innerHTML = description;
-  document.getElementById('icon-weather-container').innerHTML = icon;
-  document.getElementById('today-forecast-temp').innerHTML = `${temp}°C`;
+  document.getElementById('today-forecast-main0').innerHTML = main;
+  document.getElementById('today-forecast-more-info0').innerHTML = description;
+  document.getElementById('icon-weather-container0').innerHTML = icon;
+  document.getElementById('today-forecast-temp0').innerHTML = `${temp}°C`;
   
 })
 .catch(function(error) {
@@ -64,46 +64,42 @@ apiWeathern.fetchTodayForecast()
 }
 
 function GetMeteo3j(){
-  let city= document.getElementById('city-input').value;
-  //alert(city);
+  const city= document.getElementById('city-input').value;
+  alert(city);
   
   const apiWeathern = new API_WEATHER(city)
- apiWeathern.meteoDay()
- .then(function(response) {
-   // Récupère la donnée d'une API
-   const data = response.data; 
-   //test
- 
-   // On récupère l'information principal
-   const main = data.weather[0].main;
-   const description = data.weather[0].description;
-   const temp = data.main.temp;
-   const icon = apiWeathern.getHTMLElementFromIcon(data.weather[0].icon);
-   console.log(main);
-   console.log(description);
-   // Modifier le DOM
-   document.getElementById('today-forecast-main').innerHTML = main;
-   document.getElementById('today-forecast-more-info').innerHTML = description;
-   document.getElementById('icon-weather-container').innerHTML = icon;
-   document.getElementById('today-forecast-temp').innerHTML = `${temp}°C`;
+  
+  apiWeathern
+  .meteoDay()
+  .then(function(response) {
+    const data = response.data;
+    for (var i = 0; i < 4; i++) {
+      alert(i);
+      
+      
+      // On récupère l'information principal
+      const main = data.list[i].weather[0].main;
+      alert('1');
+      const description = data.list[i].weather[0].description;
+      alert('2');
+      const temp = data.list[i].temp.day;
+      alert('3');
+      const icon = apiWeathern.getHTMLElementFromIcon(data.list[i].weather[0].icon);
+      alert('ok');
+      // Modifier le DOM
+      document.getElementById('today-forecast-main'+i).innerHTML = main;
+      document.getElementById('today-forecast-more-info'+i).innerHTML = description;
+      document.getElementById('icon-weather-container'+i).innerHTML = icon;
+      document.getElementById('today-forecast-temp'+i).innerHTML = `${temp}°C`;
+    }
 
-   // On récupère l'information principal j+1
-   const main = data.weather[1].main;
-   const description = data.weather[1].description;
-   const temp = data.main.temp;
-   const icon = apiWeathern.getHTMLElementFromIcon(data.weather[1].icon);
-   console.log(main);
-   console.log(description);
-   // Modifier le DOM j+1
-   document.getElementById('today-forecast-main').innerHTML = main;
-   document.getElementById('today-forecast-more-info').innerHTML = description;
-   document.getElementById('icon-weather-container').innerHTML = icon;
-   document.getElementById('today-forecast-temp').innerHTML = `${temp}°C`;
-   
- })
- .catch(function(error) {
-   // Affiche une erreur
-   console.error(error);
- });
+    
+    
+  })
+  .catch(function(error) {
+    // Affiche une erreur
+    console.error(error);
+  });
+
   
 }

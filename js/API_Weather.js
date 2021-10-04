@@ -7,9 +7,7 @@ const API_URL = "https://api.openweathermap.org/data/2.5/weather";
 // Base source icon
 const API_URL_ICON = "http://openweathermap.org/img/wn/";
 //URL 3j 
-const API_URL_3J = "http://api.openweathermap.org/data/2.5/forecast/daily"
-//jour
-cont=4;
+const API_URL_3J = "https://api.openweathermap.org/data/2.5/forecast/daily";
 
 
 class API_WEATHER{
@@ -35,9 +33,11 @@ class API_WEATHER{
   }
 //Récupère les 3j de météo
   meteoDay(){
+    alert('t');
     return axios
-    .get( `${API_URL_3J}?q=${this.city}&cnt=${this.cnt}&appid=${API_KEY}`,{ 
+    .get(`${API_URL_3J}?q=${this.city}&cnt=4&units=metric&appid=${API_KEY}`, {
       crossdomain: true
     })
+    
   }
 }
