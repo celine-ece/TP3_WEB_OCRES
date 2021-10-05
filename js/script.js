@@ -65,7 +65,7 @@ apiWeathern.fetchTodayForecast()
 
 function GetMeteo3j(){
   const city= document.getElementById('city-input').value;
-  alert(city);
+ 
   
   const apiWeathern = new API_WEATHER(city)
   
@@ -74,18 +74,18 @@ function GetMeteo3j(){
   .then(function(response) {
     const data = response.data;
     for (var i = 0; i < 4; i++) {
-      alert(i);
+      
       
       
       // On récupère l'information principal
       const main = data.list[i].weather[0].main;
-      alert('1');
+      
       const description = data.list[i].weather[0].description;
-      alert('2');
+      
       const temp = data.list[i].temp.day;
-      alert('3');
+      
       const icon = apiWeathern.getHTMLElementFromIcon(data.list[i].weather[0].icon);
-      alert('ok');
+      
       // Modifier le DOM
       document.getElementById('today-forecast-main'+i).innerHTML = main;
       document.getElementById('today-forecast-more-info'+i).innerHTML = description;

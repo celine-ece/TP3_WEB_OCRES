@@ -33,7 +33,7 @@ class API_WEATHER{
   }
 //Récupère les 3j de météo
   meteoDay(){
-    alert('t');
+    
     return axios
     .get(`${API_URL_3J}?q=${this.city}&cnt=4&units=metric&appid=${API_KEY}`, {
       crossdomain: true
